@@ -1,0 +1,174 @@
+{
+  "student_name": "Rehan Shaikh",
+  "team_name": "Group 2",
+  "task_type": "entity_aware_sentiment_classification",
+  "dataset_used_for_initial_experiment": "ipl_sentiment_small_dataset.csv",
+  "target_labels": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "model_input_format": "subject_keyword + ' [SEP] ' + statement",
+  "hypothesis": "I selected CountVectorizer, HashingVectorizer, TF-IDF Word Unigram, and TF-IDF Character 3\u20135 Grams to compare different methods of converting text into numerical features.I chose Complement Naive Bayes, Multinomial Naive Bayes, Logistic Regression, and LinearSVC because they are commonly used in text classification and represent different machine learning approaches.By combining these vectorizers and classifiers, I was able to achieve the most optimals and diverse results",
+  "final_vectorizers": [
+    {
+      "id": "count_basic",
+      "name": "CountVectorizer Basic",
+      "family": "count",
+      "type": "CountVectorizer",
+      "params": {
+        "lowercase": true,
+        "max_features": 3000
+      },
+      "notes": "Simple frequency baseline. Good for seeing whether word counts are enough.",
+      "complexity": "low"
+    },
+    {
+      "id": "tfidf_char_3_5",
+      "name": "TF-IDF Character 3-5 grams",
+      "family": "tfidf_char",
+      "type": "TfidfVectorizer",
+      "params": {
+        "analyzer": "char",
+        "ngram_range": [
+          3,
+          5
+        ],
+        "max_features": 5000
+      },
+      "notes": "Useful for typos, Hinglish, team abbreviations, and social media spelling.",
+      "complexity": "medium"
+    },
+    {
+      "id": "hashing_word",
+      "name": "HashingVectorizer Word",
+      "family": "hashing",
+      "type": "HashingVectorizer",
+      "params": {
+        "alternate_sign": false,
+        "n_features": 2048,
+        "lowercase": true
+      },
+      "notes": "Scalable vectorizer. Does not store vocabulary, useful for bigger datasets.",
+      "complexity": "medium"
+    },
+    {
+      "id": "tfidf_word_1_1",
+      "name": "TF-IDF Word Unigram",
+      "family": "tfidf_word",
+      "type": "TfidfVectorizer",
+      "params": {
+        "lowercase": true,
+        "ngram_range": [
+          1,
+          1
+        ],
+        "max_features": 3000
+      },
+      "notes": "Pure unigram TF-IDF baseline.",
+      "complexity": "low"
+    }
+  ],
+  "final_classifiers": [
+    {
+      "id": "logreg_balanced",
+      "name": "Logistic Regression Balanced",
+      "family": "linear",
+      "type": "LogisticRegression",
+      "params": {
+        "max_iter": 1000,
+        "class_weight": "balanced",
+        "random_state": 42
+      },
+      "notes": "Simple, explainable, and often strong for TF-IDF features.",
+      "complexity": "low"
+    },
+    {
+      "id": "linear_svc",
+      "name": "LinearSVC",
+      "family": "margin_based",
+      "type": "LinearSVC",
+      "params": {
+        "random_state": 42
+      },
+      "notes": "Strong classical classifier for high-dimensional text data.",
+      "complexity": "medium"
+    },
+    {
+      "id": "complement_nb",
+      "name": "Complement Naive Bayes",
+      "family": "probabilistic",
+      "type": "ComplementNB",
+      "params": {},
+      "notes": "Often stronger than MultinomialNB for sparse text classification.",
+      "complexity": "low"
+    },
+    {
+      "id": "multinomial_nb",
+      "name": "Multinomial Naive Bayes",
+      "family": "probabilistic",
+      "type": "MultinomialNB",
+      "params": {},
+      "notes": "Very fast and strong baseline for text classification.",
+      "complexity": "low"
+    }
+  ],
+  "best_80R_pipeline": {
+    "rank": 1,
+    "vectorizer_id": "count_basic",
+    "vectorizer_name": "CountVectorizer Basic",
+    "vectorizer_family": "count",
+    "vectorizer_complexity": "low",
+    "classifier_id": "complement_nb",
+    "classifier_name": "Complement Naive Bayes",
+    "classifier_family": "probabilistic",
+    "classifier_complexity": "low",
+    "pipeline_id": "count_basic__complement_nb",
+    "status": "completed",
+    "accuracy": 0.7,
+    "macro_f1": 0.6904761904761906,
+    "weighted_f1": 0.6821428571428572,
+    "precision_macro": 0.6880952380952382,
+    "recall_macro": 0.7142857142857143,
+    "train_time_sec": 0.010294675827026367,
+    "prediction_time_sec": 0.0028684139251708984,
+    "model_size_kb": 25.8642578125,
+    "performance_score": 69.16071428571429,
+    "efficiency_score": 99.24884195327759,
+    "suitability_score": 100,
+    "final_score": 82.8881612477984,
+    "error": ""
+  },
+  "best_300R_pipeline": {
+    "rank_300R": 1,
+    "vectorizer_id": "count_basic",
+    "vectorizer_name": "CountVectorizer Basic",
+    "vectorizer_family": "count",
+    "vectorizer_complexity": "low",
+    "classifier_id": "logreg_balanced",
+    "classifier_name": "Logistic Regression Balanced",
+    "classifier_family": "linear",
+    "classifier_complexity": "low",
+    "pipeline_id": "count_basic__logreg_balanced",
+    "status": "completed",
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "precision_macro": 1.0,
+    "recall_macro": 1.0,
+    "train_time_sec": 0.01700139045715332,
+    "prediction_time_sec": 0.002576589584350586,
+    "model_size_kb": 16.125,
+    "performance_score": 100.0,
+    "efficiency_score": 99.42089628219605,
+    "suitability_score": 100,
+    "final_score": 99.88417925643921,
+    "error": ""
+  },
+  "files_expected": [
+    "completed_notebook.ipynb",
+    "submission_manifest.json",
+    "results_80R.csv",
+    "results_300R.csv if 300R was used"
+  ]
+}
