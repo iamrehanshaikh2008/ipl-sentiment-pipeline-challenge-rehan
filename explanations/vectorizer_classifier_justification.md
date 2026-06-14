@@ -1,4 +1,4 @@
-#Vectorizers-
+Vectorizers-
 
 
 CountVectorizer:
