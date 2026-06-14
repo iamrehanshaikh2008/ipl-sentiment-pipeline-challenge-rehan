@@ -1,19 +1,19 @@
-Vectorizers-
+#Vectorizers-
 
 
-CountVectorizer:
+##CountVectorizer:
 
 I selected CountVectorizer as a simple baseline because it represents text using word frequencies and allows comparison with more advanced vectorization methods.
 
-HashingVectorizer:
+##HashingVectorizer:
 
 I selected HashingVectorizer because it is memory efficient, does not require storing a vocabulary, and provides a scalable alternative to traditional vectorizers.
 
-TF-IDF Word Unigram:
+##TF-IDF Word Unigram:
 
 I selected TF-IDF Word Unigram because it captures the importance of individual words rather than just their frequency, making it one of the most widely used techniques for text classification.
 
-TF-IDF Character 3–5 Grams:
+##TF-IDF Character 3–5 Grams:
 
 I selected TF-IDF Character 3–5 Grams because it captures character-level patterns and can better handle spelling variations and informal text.
 
